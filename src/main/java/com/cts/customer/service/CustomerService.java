@@ -6,12 +6,10 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by 237620 on 6/16/17.
- */
-
 @Service
 public class CustomerService {
+
+
 
     public List<CustomerDetails> getPersons() {
         List<CustomerDetails> arrayList = new ArrayList() {
@@ -21,5 +19,11 @@ public class CustomerService {
         };
 
         return arrayList;
+    }
+
+    public void addCustomer() {
+
+
+
     }
 }
