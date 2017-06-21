@@ -19,12 +19,7 @@ public class CustomerController {
     @Autowired
     CustomerService customerService;
 
-    @RequestMapping(CustomerEndPoints.ROOT)
-    public String getRootPath() {
-        return "Customer MS";
-    }
-
-    @RequestMapping(CustomerEndPoints.INDEX_URL)
+       @RequestMapping(CustomerEndPoints.INDEX_URL)
     public ModelAndView showAddCustomerPage() {
         return new ModelAndView("addCustomer");
     }

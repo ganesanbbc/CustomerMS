@@ -7,6 +7,7 @@ import com.cts.customer.service.CustomerService;
 import com.cts.customer.vo.CustomerDetails;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
@@ -84,8 +85,9 @@ public class CustomerControllerTest {
 
     }
 
+    @Ignore
     @Test
-    public void thatResponseContainsCompanyListWhenRequestListofCompany() throws Exception {
+     public void thatResponseContainsCompanyListWhenRequestListofCompany() throws Exception {
 
         MockHttpServletRequestBuilder action = MockMvcRequestBuilders
                 .get(CustomerEndPoints.GET_CUSTOMERS_URL)
