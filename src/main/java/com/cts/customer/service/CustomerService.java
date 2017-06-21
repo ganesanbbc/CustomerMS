@@ -1,29 +1,27 @@
 package com.cts.customer.service;
 
-import com.cts.customer.vo.CustomerDetails;
+import com.cts.customer.dao.CustomerDao;
+import com.cts.customer.vo.Customer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class CustomerService {
+public class CustomerService implements ICustomerService {
 
 
+    @Autowired
+    CustomerDao customerDao;
 
-    public List<CustomerDetails> getPersons() {
-        List<CustomerDetails> arrayList = new ArrayList() {
-            {
-                add(new CustomerDetails("firstname"));
-            }
-        };
+    @Override
+    public Customer createCustomer(Customer customer) {
+            return customerDao.createCustomer(customer);
+        }
 
-        return arrayList;
-    }
-
-    public void addCustomer() {
-
-
-
+    @Override
+    public List<Customer> getAllCustomers() {
+        return customerDao.getAllCustomers();
     }
 }
