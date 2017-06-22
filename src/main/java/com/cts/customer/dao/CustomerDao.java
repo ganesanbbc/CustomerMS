@@ -39,7 +39,7 @@ public class CustomerDao {
         try {
             log.warning("Calling getAllCustomers");
             System.out.println("Calling getAllCustomers");
-            List<Customer> customerList = new ArrayList<Customer>();
+            ArrayList<Customer> customerList = new ArrayList();
 
             Query<Entity> entityQuery = Query.newEntityQueryBuilder().setKind(TABLE_NAME).build();
 
@@ -61,10 +61,11 @@ public class CustomerDao {
                 System.out.println("Calling getAllCustomers customer id name"+customer.getKey().getName());
                 System.out.println("Calling getAllCustomers customer id"+customer.getKey().getId());
                 System.out.println("Calling getAllCustomers customer name"+customer.getString("Customer_Name"));
-
-                customerList.add(new Customer(customer.getKey().getId(), customer.getString("Customer_Name"),
-                        customer.getString("Customer_Email"), customer.getString("Customer_Location"),
-                        ""));
+                Customer tempCustomer = new Customer(customer.getKey().getId(), customer.getString("Customer_Name"),
+                    customer.getString("Customer_Email"), customer.getString("Customer_Location"),
+                    "");
+                System.out.println("Calling getAllCustomers tempCustomer"+tempCustomer.toString());
+                customerList.add(tempCustomer);
 
             }
             log.warning("customerList.size()" + customerList.size());
