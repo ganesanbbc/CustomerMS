@@ -45,9 +45,12 @@ public class CustomerDao {
 
             Iterator<Entity> entityIterator = datastore.run(entityQuery);
 
-
+            System.out.println("Calling getAllCustomers has next "+entityIterator.hasNext());
             while (entityIterator.hasNext()) {
+
+                System.out.println("Calling getAllCustomers not null check - "+entityIterator != null);
                 Entity customer = entityIterator.next();
+                System.out.println("Calling getAllCustomers customer"+customer.toString());
                 customerList.add(new Customer(customer.getKey().getId(), customer.getString("Customer_Name"),
                         customer.getString("Customer_Email"), customer.getString("Customer_Location"),
                         ""));
