@@ -43,14 +43,23 @@ public class CustomerDao {
 
             Query<Entity> entityQuery = Query.newEntityQueryBuilder().setKind(TABLE_NAME).build();
 
-            Iterator<Entity> entityIterator = datastore.run(entityQuery);
 
+            QueryResults<Entity> results = datastore.run(entityQuery);
+            while(results.hasNext()){
+                  Entity result = results.next();
+                  System.out.println("Test result ----- "+result.getString("Customer_Name"));
+            }
+
+
+            Iterator<Entity> entityIterator = datastore.run(entityQuery);
             System.out.println("Calling getAllCustomers has next "+entityIterator.hasNext());
             while (entityIterator.hasNext()) {
 
                 System.out.println("Calling getAllCustomers not null check - "+entityIterator != null);
                 Entity customer = entityIterator.next();
                 System.out.println("Calling getAllCustomers customer"+customer.toString());
+                System.out.println("Calling getAllCustomers customer id name"+customer.getKey().getName());
+                System.out.println("Calling getAllCustomers customer id"+customer.getKey().getId());
                 System.out.println("Calling getAllCustomers customer name"+customer.getString("Customer_Name"));
 
                 customerList.add(new Customer(customer.getKey().getId(), customer.getString("Customer_Name"),
