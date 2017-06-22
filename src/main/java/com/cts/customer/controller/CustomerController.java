@@ -23,9 +23,7 @@ public class CustomerController {
 
     @RequestMapping(CustomerEndPoints.ROOT)
     public String showCustomers(Model model) {
-        System.out.println("In Controller");
         List<Customer> customerList = customerService.getAllCustomers();
-        System.out.println("In Controller: "+customerList.size());
         model.addAttribute("customers",customerList);
         return "index";
     }

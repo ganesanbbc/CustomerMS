@@ -5,17 +5,12 @@ import com.cts.customer.vo.Customer;
 
 import com.google.cloud.Timestamp;
 import com.google.cloud.datastore.*;
-import org.joda.time.DateTime;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
-
-/**
- * Created by priyadarshini on 6/21/17.
- */
 
 @Repository
 public class CustomerDao {
@@ -58,7 +53,6 @@ public class CustomerDao {
                         ""));
 
             }
-            System.out.println("customerList.size()" + customerList.size());
             log.warning("customerList.size()" + customerList.size());
             return customerList;
         }catch(Exception ex){
