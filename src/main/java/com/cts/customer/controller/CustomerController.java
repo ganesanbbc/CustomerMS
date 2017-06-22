@@ -23,7 +23,9 @@ public class CustomerController {
 
     @RequestMapping(CustomerEndPoints.ROOT)
     public String showCustomers(Model model) {
+        System.out.println("In Controller");
         List<Customer> customerList = customerService.getAllCustomers();
+        System.out.println("In Controller: "+customerList.size());
         model.addAttribute("customers",customerList);
         return "index";
     }
@@ -36,8 +38,7 @@ public class CustomerController {
 
     @RequestMapping(value = CustomerEndPoints.CREATE_CUSTOMER_URL, method = RequestMethod.POST)
     public String createCustomer(@ModelAttribute("customer") Customer customer,Model model) {
-
-           Customer returnCustomer = customerService.createCustomer(customer);
+        Customer returnCustomer = customerService.createCustomer(customer);
         List<Customer> customerList = customerService.getAllCustomers();
         model.addAttribute("customers",customerList);
         return "index";
