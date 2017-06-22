@@ -39,7 +39,7 @@ public class CustomerDao {
         try {
             log.warning("Calling getAllCustomers");
             System.out.println("Calling getAllCustomers");
-            List<Customer> customerList = new ArrayList<>();
+            List<Customer> customerList = new ArrayList<Customer>();
 
             Query<Entity> entityQuery = Query.newEntityQueryBuilder().setKind(TABLE_NAME).build();
 
@@ -51,6 +51,8 @@ public class CustomerDao {
                 System.out.println("Calling getAllCustomers not null check - "+entityIterator != null);
                 Entity customer = entityIterator.next();
                 System.out.println("Calling getAllCustomers customer"+customer.toString());
+                System.out.println("Calling getAllCustomers customer name"+customer.getString("Customer_Name"));
+
                 customerList.add(new Customer(customer.getKey().getId(), customer.getString("Customer_Name"),
                         customer.getString("Customer_Email"), customer.getString("Customer_Location"),
                         ""));
