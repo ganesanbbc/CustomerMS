@@ -57,21 +57,24 @@ public class CustomerDao {
 
                 System.out.println("Calling getAllCustomers not null check - "+entityIterator != null);
                 Entity customer = entityIterator.next();
-                System.out.println("Calling getAllCustomers customer"+customer.toString());
-                System.out.println("Calling getAllCustomers customer id name"+customer.getKey().getName());
-                System.out.println("Calling getAllCustomers customer id"+customer.getKey().getId());
-                System.out.println("Calling getAllCustomers customer name"+customer.getString("Customer_Name"));
-                Customer tempCustomer = new Customer(customer.getKey().getId(), customer.getString("Customer_Name"),
-                    customer.getString("Customer_Email"), customer.getString("Customer_Location"),
-                    "");
-                System.out.println("Calling getAllCustomers tempCustomer"+tempCustomer.toString());
-                customerList.add(tempCustomer);
-
+                if(customer.getKey().getId() != null) {
+                    System.out.println("Calling getAllCustomers customer" + customer.toString());
+                    System.out.println("Calling getAllCustomers customer id name" + customer.getKey().getName());
+                    System.out.println("Calling getAllCustomers customer id" + customer.getKey().getId());
+                    System.out.println("Calling getAllCustomers customer name" + customer.getString("Customer_Name"));
+                    Customer tempCustomer = new Customer(customer.getKey().getId(), customer.getString("Customer_Name"),
+                            customer.getString("Customer_Email"), customer.getString("Customer_Location"),
+                            "");
+                    System.out.println("Calling getAllCustomers tempCustomer" + tempCustomer.toString());
+                    customerList.add(tempCustomer);
+                }else{
+                    log.info("Customer Key Id s NULL ");
+                }
             }
             log.warning("customerList.size()" + customerList.size());
             return customerList;
         }catch(Exception ex){
-            log.warning(""+ex.getMessage());
+            log.warning("Exception : "+ex.getMessage());
             return  null;
         }
     }
