@@ -59,4 +59,6 @@ public class CustomerServiceTest {
         List<Customer> actualCustomerList =  customerService.getAllCustomers();
         assertThat(actualCustomerList.size(),is(customerList.size()));
     }
+
+
 }

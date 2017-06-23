@@ -37,11 +37,8 @@ public class CustomerController {
     @RequestMapping(value = CustomerEndPoints.CREATE_CUSTOMER_URL, method = RequestMethod.POST)
     public String createCustomer(@ModelAttribute("customer") Customer customer,Model model) {
         Customer returnCustomer = customerService.createCustomer(customer);
-        List<Customer> customerList = customerService.getAllCustomers();
-        model.addAttribute("customers",customerList);
-        return "index";
-
-
+        model.addAttribute("customers",returnCustomer);
+        return "addService";
     }
 
 
