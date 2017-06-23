@@ -21,7 +21,7 @@ public class CustomerController {
     @Autowired
     CustomerService customerService;
 
-    @RequestMapping(CustomerEndPoints.ROOT)
+    @RequestMapping(value = {CustomerEndPoints.ROOT, CustomerEndPoints.INDEX_URL})
     public String showCustomers(Model model) {
         List<Customer> customerList = customerService.getAllCustomers();
         model.addAttribute("customers",customerList);
