@@ -3,6 +3,7 @@ package com.cts.customer.template;
 import com.cts.customer.dao.CustomerDao;
 import com.cts.customer.service.CustomerService;
 import com.cts.customer.vo.Customer;
+import com.cts.customer.vo.ServiceDetails;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,7 +11,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -59,6 +59,14 @@ public class CustomerServiceTest {
         List<Customer> actualCustomerList =  customerService.getAllCustomers();
         assertThat(actualCustomerList.size(),is(customerList.size()));
     }
+
+    /*@Test
+    public void shouldCreateCustomerService() throws Exception{
+        ServiceDetails details = new ServiceDetails();
+        Mockito.when(customerDao.createServiceDetails(details)).thenReturn(details);
+        ServiceDetails actual = customerService.createServiceDetails(details);
+        assertEquals(details.getServiceDetails(),actual.getServiceDetails());
+    }*/
 
 
 }

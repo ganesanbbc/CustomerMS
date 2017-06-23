@@ -5,6 +5,7 @@ import com.cts.customer.utils.CustomerEndPoints;
 import com.cts.customer.service.CustomerService;
 
 import com.cts.customer.vo.Customer;
+import com.cts.customer.vo.ServiceDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,10 +36,10 @@ public class CustomerController {
     }
 
     @RequestMapping(value = CustomerEndPoints.CREATE_CUSTOMER_URL, method = RequestMethod.POST)
-    public String createCustomer(@ModelAttribute("customer") Customer customer,Model model) {
+    public ModelAndView createCustomer(@ModelAttribute("customer") Customer customer) {
         Customer returnCustomer = customerService.createCustomer(customer);
-        model.addAttribute("customers",returnCustomer);
-        return "addService";
+        ModelAndView view = new ModelAndView("addServiceDetails","service",new ServiceDetails(returnCustomer.getId()));
+        return view;
     }
 
 

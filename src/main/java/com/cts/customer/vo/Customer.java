@@ -1,7 +1,6 @@
 package com.cts.customer.vo;
 
 
-import org.joda.time.DateTime;
 
 public class Customer {
 
