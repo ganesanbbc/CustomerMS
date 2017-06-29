@@ -44,6 +44,13 @@ public class CustomerController {
         return view;
     }
     
+    @RequestMapping(value = CustomerEndPoints.SEARCH_CUSTOMER_URL, method = RequestMethod.GET)
+    public String searchCustomerGet(Model model) {
+    	 List<Customer> customerList = customerService.getAllCustomers();
+    	  model.addAttribute("customers",customerList);
+        return CustomerEndPoints.SEARCH_CUSTOMER_URL;
+    }
+    
     
     @RequestMapping(value = CustomerEndPoints.SEARCH_CUSTOMER_URL, method = RequestMethod.POST)
     public String searchCustomer(String search,Model model) {

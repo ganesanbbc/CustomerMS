@@ -46,32 +46,30 @@
 	</div>
 </nav>
 <form action="#" method="post" th:object="${customer}" th:action="@{/createCustomer}">
-<h1>Add Customer</h1>
+<h1>View Customer Details</h1>
 <div class="rTable">
 			<div class="rTableRow">
 				<div class="rTableCell">Customer Name:</div>
 				<div class="rTableCell">
-					<input type="text" name="userName"  th:field="*{userName}" />
+				<p th:text="${userName}">
+					<input type="hidden" name="id"  th:field="*{id}" />
 				</div>
 			</div>
 			<div class="rTableRow">
 				<div class="rTableCell">Customer Mail id:</div>
 				<div class="rTableCell">
-					<input type="text" name="mailId" th:field="*{mailId}" />
+				<p th:text="${mailId}">
+					
 				</div>
 			</div>
 			<div class="rTableRow">
 				<div class="rTableCell">Location:</div>
 				<div class="rTableCell">
-					<input type="text" name="location" th:field="*{location}" />
+				<p th:text="${location}">
+					
 				</div>
 			</div>
-			<div class="rTableRow">
-				<div class="rTableCell">
-					<input type="submit" value="Submit" /> <input type="reset"
-						value="Reset" />
-				</div>
-			</div>
+			
 			</div>
 </form>
 </body>
