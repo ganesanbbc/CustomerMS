@@ -48,6 +48,7 @@ public class CustomerController {
     public String searchCustomerGet(Model model) {
     	 List<Customer> customerList = customerService.getAllCustomers();
     	  model.addAttribute("customers",customerList);
+    	  model.addAttribute("search", "");
         return CustomerEndPoints.SEARCH_CUSTOMER_URL;
     }
     
