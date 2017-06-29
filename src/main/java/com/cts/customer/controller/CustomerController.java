@@ -6,7 +6,7 @@ import com.cts.customer.service.CustomerService;
 
 import com.cts.customer.vo.Customer;
 import com.cts.customer.vo.ServiceDetails;
-import com.googlecode.totallylazy.Strings;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -46,7 +46,7 @@ public class CustomerController {
     
     @RequestMapping(value = CustomerEndPoints.SEARCH_CUSTOMER_URL, method = RequestMethod.GET)
     public String searchCustomer(String search,Model model) {
-    	if(!Strings.isEmpty(search)){
+    	if(search != null && !search.isEmpty()){
     	 List<Customer> customerList = customerService.getCustomerById(search);
     	 model.addAttribute("customers",customerList);
     	}
