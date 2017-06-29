@@ -6,4 +6,5 @@ public interface CustomerEndPoints {
     String GET_CUSTOMERS_URL = "/getCusotmerList";
     String ROOT = "/";
     String CREATE_CUSTOMER_URL = "/createCustomer";
+    String SEARCH_CUSTOMER_URL = "/searchCustomer";
 }

@@ -6,6 +6,8 @@ import com.cts.customer.service.CustomerService;
 
 import com.cts.customer.vo.Customer;
 import com.cts.customer.vo.ServiceDetails;
+import com.googlecode.totallylazy.Strings;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,6 +42,16 @@ public class CustomerController {
         Customer returnCustomer = customerService.createCustomer(customer);
         ModelAndView view = new ModelAndView("addServiceDetails","service",new ServiceDetails(returnCustomer.getId()));
         return view;
+    }
+    
+    @RequestMapping(value = CustomerEndPoints.SEARCH_CUSTOMER_URL, method = RequestMethod.GET)
+    public String searchCustomer(String search,Model model) {
+    	if(!Strings.isEmpty(search)){
+    	 List<Customer> customerList = customerService.getCustomerById(search);
+    	 model.addAttribute("customers",customerList);
+    	}
+    	 model.addAttribute("search", search);
+        return CustomerEndPoints.SEARCH_CUSTOMER_URL;
     }
 
 

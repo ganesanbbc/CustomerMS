@@ -30,4 +30,9 @@ public class CustomerService implements ICustomerService {
     public void createServiceDetails(ServiceDetails service) {
          customerDao.createServiceDetails(service);
     }
+
+	@Override
+	public List<Customer> getCustomerById(String customerName) {
+		return customerDao.getCustomersById(customerName);
+	}
 }

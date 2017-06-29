@@ -11,6 +11,8 @@ public interface ICustomerService {
     Customer createCustomer(Customer customer);
 
     List<Customer> getAllCustomers();
+    
+    List<Customer> getCustomerById(String customerName);
 
     void createServiceDetails(ServiceDetails service);
 }
