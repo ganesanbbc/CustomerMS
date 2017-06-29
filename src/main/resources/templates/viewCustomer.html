@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Add Customer</title>
+	<link rel="stylesheet" type="text/css"
+		  href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <style type="text/css">
+.rTable {
+	display: table;
+}
+
+.rTableRow {
+	display: table-row;
+	margin:  0 10px;
+}
+
+.rTableHeading {
+	display: table-header-group;
+}
+
+.rTableBody {
+	display: table-row-group;
+}
+
+.rTableFoot {
+	display: table-footer-group;
+}
+
+.rTableCell, .rTableHead {
+	display: table-cell;
+	padding: 3px 10px;
+	vertical-align: middle;
+}
+</style>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+	<div class="container">
+		<div id="navbar" class="collapse navbar-collapse">
+			<ul class="nav navbar-nav">
+				<li><a href="/index">View Customers</a></li>
+				<li class="active"><a href="/createCustomer">Add Customer</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+<form action="#" method="post" th:object="${customer}" th:action="@{/createCustomer}">
+<h1>Add Customer</h1>
+<div class="rTable">
+			<div class="rTableRow">
+				<div class="rTableCell">Customer Name:</div>
+				<div class="rTableCell">
+					<input type="text" name="userName"  th:field="*{userName}" />
+				</div>
+			</div>
+			<div class="rTableRow">
+				<div class="rTableCell">Customer Mail id:</div>
+				<div class="rTableCell">
+					<input type="text" name="mailId" th:field="*{mailId}" />
+				</div>
+			</div>
+			<div class="rTableRow">
+				<div class="rTableCell">Location:</div>
+				<div class="rTableCell">
+					<input type="text" name="location" th:field="*{location}" />
+				</div>
+			</div>
+			<div class="rTableRow">
+				<div class="rTableCell">
+					<input type="submit" value="Submit" /> <input type="reset"
+						value="Reset" />
+				</div>
+			</div>
+			</div>
+</form>
+</body>
+</html>

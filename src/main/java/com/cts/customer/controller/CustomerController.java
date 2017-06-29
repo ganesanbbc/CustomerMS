@@ -44,14 +44,27 @@ public class CustomerController {
         return view;
     }
     
-    @RequestMapping(value = CustomerEndPoints.SEARCH_CUSTOMER_URL, method = RequestMethod.GET)
+    
+    @RequestMapping(value = CustomerEndPoints.SEARCH_CUSTOMER_URL, method = RequestMethod.POST)
     public String searchCustomer(String search,Model model) {
+    	List<Customer> customerList = null;
     	if(search != null && !search.isEmpty()){
-    	 List<Customer> customerList = customerService.getCustomerById(search);
-    	 model.addAttribute("customers",customerList);
+    	customerList = customerService.searchCustomersByName(search);
+    	 
     	}
+    	model.addAttribute("customers",customerList);
     	 model.addAttribute("search", search);
         return CustomerEndPoints.SEARCH_CUSTOMER_URL;
+    }
+    
+    @RequestMapping(value = CustomerEndPoints.VIEW_CUSTOMER_URL, method = RequestMethod.GET)
+    public String viewCustomer(String customerId,Model model) {
+    	if(customerId != null && !customerId.isEmpty()){
+    	 Customer customerList = customerService.getCustomerById(Long.parseLong(customerId));
+    	 model.addAttribute("customer",customerList);
+    	}
+//    	 model.addAttribute("search", search);
+        return CustomerEndPoints.VIEW_CUSTOMER_URL;
     }
 
 

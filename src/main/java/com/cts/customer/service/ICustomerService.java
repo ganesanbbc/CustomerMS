@@ -12,7 +12,9 @@ public interface ICustomerService {
 
     List<Customer> getAllCustomers();
     
-    List<Customer> getCustomerById(String customerName);
+    Customer getCustomerById(long customerId);
+    
+    List<Customer> searchCustomersByName(String customerName);
 
     void createServiceDetails(ServiceDetails service);
 }
