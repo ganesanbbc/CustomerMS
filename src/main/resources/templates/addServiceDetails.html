@@ -67,6 +67,8 @@
 	</div>
 </nav>
 
+
+<div class="container1">
 <div id="wo" class="div2">
 	<input type="hidden" id="name" value="cts"/>
 	<input type="hidden" id="customerid" value="cts1"/>
@@ -75,7 +77,7 @@
 	Start Date: <input type="text" id="date"/><br/><br/>
 
 </div>
-
+</div>
 
 <input type="button" class="mybutton"  value="Add Another Service" onClick="insertDiv()" />
 <input type="button" class="mybutton"  value="Save WorkOrders" onClick="saveDiv()" />
@@ -89,7 +91,7 @@
 
 function saveDiv(){
 var saveArray=[];
-    $('.container div').each(function() {
+    $('.container1 div').each(function() {
 
     var saveObj={};
     saveObj["name"]=$(this).find('#name').val();
@@ -118,7 +120,9 @@ function saveWorkOrder(saveArray){
 
 function insertDiv(){
   console.log(" in insertDiv");
-$('.container').append(("<div id='wo' class='div2'> Details:  <input type='text' id='details' cols='40' rows='5' style='width:200px; height:50px;' /> <br/><br/> Date:<input id='date' type='text'/> <br/><br/> </div>" ));
+  var template = '<div id="wo" class="div2"> Details:  <input type="text" id="details" cols="40" rows="5" style="width:200px; height:50px;" /> <br/><br/> Date:<input id="date" type="text"/> <br/><br/> </div>'
+ //var template = '<div id="wo">added</div>';
+$('.container1').append(template);
 }
 
 
