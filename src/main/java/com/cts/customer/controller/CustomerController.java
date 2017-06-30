@@ -21,56 +21,64 @@ import java.util.List;
 @Controller
 public class CustomerController {
 
+    public static final String CUSTOMERS_ATTR = "customers";
+    public static final String ADD_CUSTOMER_PAGE = "addCustomer";
+    public static final String CUSTOMER_ATTR = "customer";
+    public static final String SEARCH_ATTR = "search";
+
+
+    public static final String INDEX_PAGE = "index";
+
     @Autowired
     CustomerService customerService;
 
     @RequestMapping(value = {CustomerEndPoints.ROOT, CustomerEndPoints.INDEX_URL})
     public String showCustomers(Model model) {
         List<Customer> customerList = customerService.getAllCustomers();
-        model.addAttribute("customers",customerList);
-        return "index";
+        model.addAttribute(CUSTOMERS_ATTR, customerList);
+        return INDEX_PAGE;
     }
 
     @RequestMapping(CustomerEndPoints.CREATE_CUSTOMER_URL)
     public String showAddCustomerPage(Model model) {
-        model.addAttribute("customer",new Customer());
-        return "addCustomer";
+        model.addAttribute(CUSTOMER_ATTR, new Customer());
+        return ADD_CUSTOMER_PAGE;
     }
 
     @RequestMapping(value = CustomerEndPoints.CREATE_CUSTOMER_URL, method = RequestMethod.POST)
     public ModelAndView createCustomer(@ModelAttribute("customer") Customer customer) {
         Customer returnCustomer = customerService.createCustomer(customer);
-        ModelAndView view = new ModelAndView("addServiceDetails","service",new ServiceDetails(returnCustomer.getId()));
-        return view;
+        return new ModelAndView("addServiceDetails",
+                "service", new ServiceDetails(returnCustomer.getId()));
     }
-    
+
     @RequestMapping(value = CustomerEndPoints.SEARCH_CUSTOMER_URL, method = RequestMethod.GET)
     public String searchCustomerGet(Model model) {
-    	 List<Customer> customerList = customerService.getAllCustomers();
-    	  model.addAttribute("customers",customerList);
-    	  model.addAttribute("search", "");
+        List<Customer> customerList = customerService.getAllCustomers();
+        model.addAttribute(CUSTOMERS_ATTR, customerList);
+        model.addAttribute(SEARCH_ATTR, "");
         return CustomerEndPoints.SEARCH_CUSTOMER_URL;
     }
-    
-    
+
+
     @RequestMapping(value = CustomerEndPoints.SEARCH_CUSTOMER_URL, method = RequestMethod.POST)
-    public String searchCustomer(String search,Model model) {
-    	List<Customer> customerList = null;
-    	if(search != null && !search.isEmpty()){
-    	customerList = customerService.searchCustomersByName(search);
-    	 
-    	}
-    	model.addAttribute("customers",customerList);
-    	 model.addAttribute("search", search);
+    public String searchCustomer(String search, Model model) {
+        List<Customer> customerList = null;
+        if (search != null && !search.isEmpty()) {
+            customerList = customerService.searchCustomersByName(search);
+
+        }
+        model.addAttribute(CUSTOMERS_ATTR, customerList);
+        model.addAttribute(SEARCH_ATTR, search);
         return CustomerEndPoints.SEARCH_CUSTOMER_URL;
     }
-    
+
     @RequestMapping(value = CustomerEndPoints.VIEW_CUSTOMER_URL, method = RequestMethod.GET)
-    public String viewCustomer(String customerId,Model model) {
-    	if(customerId != null && !customerId.isEmpty()){
-    	 Customer customerList = customerService.getCustomerById(Long.parseLong(customerId));
-    	 model.addAttribute("customer",customerList);
-    	}
+    public String viewCustomer(String customerId, Model model) {
+        if (customerId != null && !customerId.isEmpty()) {
+            Customer customerList = customerService.getCustomerById(Long.parseLong(customerId));
+            model.addAttribute(CUSTOMER_ATTR, customerList);
+        }
 //    	 model.addAttribute("search", search);
         return CustomerEndPoints.VIEW_CUSTOMER_URL;
     }

@@ -39,35 +39,60 @@
 	<div class="container">
 		<div id="navbar" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="index.html">View Customers</a></li>
-				<li><a href="addCustomer.html">Add Customer</a></li>
+				<li class="active"><a href="#"  onClick="return insertDiv();">Add Another Service</a></li>
+				<li><a href="#" onClick="return saveDiv();">Save</a></li>
 			</ul>
 		</div>
 	</div>
 </nav>
-<form action="#" method="post" th:object="${service}" th:action="@{/createService}">
-<h1>Add Customer</h1>
-<div class="rTable">
-			<div class="rTableRow">
-				<div class="rTableCell">Customer Service Details:</div>
-				<div class="rTableCell">
-					<input type="text" name="serviceDetails"  th:field="*{serviceDetails}" />
-				</div>
-			</div>
-			<div class="rTableRow">
-				<div class="rTableCell">Service Start Date:</div>
-				<div class="rTableCell">
-					<input type="textarea" name="startDate" th:field="*{startDate}" />
-				</div>
-			</div>
 
-			<div class="rTableRow">
-				<div class="rTableCell">
-					<input type="submit" value="Create" /> <input type="reset"
-						value="Reset" />
-				</div>
-			</div>
-			</div>
-</form>
+<div id="wo">
+	<input type="hidden" id="name" value="cts"/>
+	<input type="hidden" id="customerid" value="cts1"/>
+	<input type="hidden" id="status" value="open"/>
+	Details : <input type="text" id="details" cols="40" rows="5" style="width:200px; height:50px;" /><br/><br/>
+	Start Date: <input type="text" id="date"/><br/><br/><hr/>
+</div>
 </body>
+
+<script>
+
+
+
+function saveDiv(){
+var saveArray=[];
+    $('.container div').each(function() {
+
+    var saveObj={};
+    saveObj["name"]=$(this).find('#name').val();
+    saveObj["customerid"]=$(this).find('#customerid').val();
+    saveObj["status"]=$(this).find('#status').val();
+    saveObj["details"]=$(this).find('#details').val();
+    saveObj["date"]=$(this).find('#date').val();
+    saveArray.push(saveObj);
+    });
+    saveWorkOrder(saveArray);
+}
+
+function saveWorkOrder(saveArray){
+    console.log("test--"+JSON.stringify(saveArray));
+    $.ajax({
+            url: "/changeStatus/",
+            method : "POST",
+            data : JSON.stringify(saveArray),
+            success: function(data) {
+                alert("Data updated successfully")
+            }
+        });
+}
+
+
+
+function insertDiv(){
+$('.container').append(("<div id='wo'> Details:  <input type='text' id='details' cols='40' rows='5' style='width:200px; height:50px;' /> <br/><br/> Date:<input id='date' type='text'/> <br/><br/><hr/> </div>" ));
+}
+
+
+
+</script>
 </html>
