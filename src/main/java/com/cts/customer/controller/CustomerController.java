@@ -77,7 +77,7 @@ public class CustomerController {
         return INDEX_PAGE;
     }
 
-    @RequestMapping(value = CustomerEndPoints.VIEW_CUSTOMER_URL, method = RequestMethod.POST)
+    @RequestMapping(value = CustomerEndPoints.VIEW_CUSTOMER_URL, method = RequestMethod.GET)
     public String viewCustomer(@PathVariable String customerId, Model model) {
         if (customerId != null && !customerId.isEmpty()) {
             Customer customerList = customerService.getCustomerById(Long.parseLong(customerId));

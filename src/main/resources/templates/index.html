@@ -65,7 +65,7 @@
 			</thead>
 			<tbody>
 			<tr th:each="customer :${customers}">
-				<td><a href="#" onclick="viewCustomer(${customer.id})" ><p th:text="${customer.userName}"></p></a></td>
+				<td><p th:onclick="'javascript:viewCustomer(\'' + ${customer.id} + '\');'" th:text="${customer.userName}"></p></td>
 				<td><p th:text="${customer.mailId}"></p></td>
 				<td><p th:text="${customer.location}"></p></td>
 			</tr>
@@ -92,7 +92,7 @@ function viewCustomer(id){
     <!--alert(id);-->
     $.ajax({
             url: "/viewCustomer/"+id,
-            method : "POST",
+            method : "GET",
             success: function(data) {
                 location.reload();
                 top.location.top.location.reload();
