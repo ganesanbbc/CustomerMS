@@ -71,7 +71,7 @@ public class CustomerController {
         }
         model.addAttribute(CUSTOMERS_ATTR, customerList);
         model.addAttribute(SEARCH_ATTR, search);
-        return CustomerEndPoints.INDEX_URL;
+        return INDEX_PAGE;
     }
 
     @RequestMapping(value = CustomerEndPoints.VIEW_CUSTOMER_URL, method = RequestMethod.GET)
