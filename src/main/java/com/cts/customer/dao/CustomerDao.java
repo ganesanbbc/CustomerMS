@@ -52,10 +52,10 @@ public class CustomerDao {
             Query<Entity> entityQuery = Query.newEntityQueryBuilder().setKind(TABLE_NAME).build();
 
 
-            QueryResults<Entity> results = datastore.run(entityQuery);
-            while(results.hasNext()){
-                  Entity result = results.next();
-            }
+//            QueryResults<Entity> results = datastore.run(entityQuery);
+//            while(results.hasNext()){
+//                  Entity result = results.next();
+//            }
 
 
             Iterator<Entity> entityIterator = datastore.run(entityQuery);
@@ -106,12 +106,13 @@ public class CustomerDao {
         try {
             log.warning("Calling searchCustomersByName"+customerName);
             ArrayList<Customer> customerList = new ArrayList();
-            Query<Entity> entityQuery = Query.newEntityQueryBuilder().setKind(TABLE_NAME).build();
+            Query<Entity> entityQuery = Query.newEntityQueryBuilder().setKind(TABLE_NAME).
+            		setFilter(PropertyFilter.ge("Customer_Name",""+customerName)).build();
 
             Iterator<Entity> entityIterator = datastore.run(entityQuery);
             while (entityIterator.hasNext()) {
                 Entity customer = entityIterator.next();
-                if(customer.getKey().getId() != null && customer.getString("Customer_Name").startsWith(customerName)) {
+                if(customer.getKey().getId() != null) {
                     Customer tempCustomer = new Customer(customer.getKey().getId(), customer.getString("Customer_Name"),
                             customer.getString("Customer_Email"), customer.getString("Customer_Location"),
                             "");
@@ -120,6 +121,7 @@ public class CustomerDao {
                     log.info("searchCustomersByName Key Id is NULL ");
                 }
             }
+            log.info("searchCustomersByName customerList.size() "+customerList.size());
             return customerList;
         } catch(Exception ex){
             log.warning("Exception : "+ex.getMessage());
