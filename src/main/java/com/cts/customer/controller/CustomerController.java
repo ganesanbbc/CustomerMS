@@ -27,6 +27,8 @@ public class CustomerController {
     public static final String ADD_CUSTOMER_PAGE = "addCustomer";
     public static final String CUSTOMER_ATTR = "customer";
     public static final String SEARCH_ATTR = "search";
+    public static final String VIEW_CUSTOMER_ATTR = "viewCustomer";
+    
 
 
     public static final String INDEX_PAGE = "index";
@@ -75,14 +77,14 @@ public class CustomerController {
         return INDEX_PAGE;
     }
 
-    @RequestMapping(value = CustomerEndPoints.VIEW_CUSTOMER_URL, method = RequestMethod.GET)
+    @RequestMapping(value = CustomerEndPoints.VIEW_CUSTOMER_URL, method = RequestMethod.POST)
     public String viewCustomer(@PathVariable String customerId, Model model) {
         if (customerId != null && !customerId.isEmpty()) {
             Customer customerList = customerService.getCustomerById(Long.parseLong(customerId));
             model.addAttribute(CUSTOMER_ATTR, customerList);
         }
 //    	 model.addAttribute("search", search);
-        return CustomerEndPoints.VIEW_CUSTOMER_URL;
+        return VIEW_CUSTOMER_ATTR;
     }
 
 
