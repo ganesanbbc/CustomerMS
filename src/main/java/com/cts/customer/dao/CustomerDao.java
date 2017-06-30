@@ -39,8 +39,11 @@ public class CustomerDao {
                 .set("Customer_Email",customer.getMailId()).set("Customer_Location",customer.getLocation())
                 .set("Created_DateTime", Timestamp.now()).build();
 
-        datastore.add(entity);
-
+        Entity addedEntity = datastore.add(entity);
+        Customer tempCustomer = new Customer(addedEntity.getKey().getId(), addedEntity.getString("Customer_Name"),
+        		addedEntity.getString("Customer_Email"), addedEntity.getString("Customer_Location"),
+                "");
+        log.warning("Calling createCustomer"+tempCustomer.getId() + ":"+tempCustomer.getUserName());
         return customer;
     }
 
