@@ -47,7 +47,11 @@
 	</div>
 </nav>
 <h1>View Customer</h1>
-
+<form action="/searchCustomer" method="POST">
+      <div>Customer Name :      <input type="text" name="search" id="search" th:value="${search}" />
+            <input type="submit" value="Search" />
+            </div>
+</form>
 <div th:if="${not #lists.isEmpty(customers)}">
 	<div class="table-responsive">
 		<table class="table">
