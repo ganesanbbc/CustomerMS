@@ -82,15 +82,17 @@ public class CustomerDao {
     
     public Customer getCustomersById(long  customerId){
         try {
-            log.warning("Calling getAllCustomers");
+            log.warning("Calling getCustomersById" + customerId);
             Customer customerNew = new Customer();
             Query<Entity> entityQuery = Query.newEntityQueryBuilder().setKind(TABLE_NAME).
             		setFilter(PropertyFilter. eq("Customer_Id",""+customerId)).build();
 
             Iterator<Entity> entityIterator = datastore.run(entityQuery);
             while (entityIterator.hasNext()) {
+            	 log.warning("Calling getCustomersById while" + customerId);
                 Entity customer = entityIterator.next();
                 if(customer.getKey().getId() != null	) {
+                	 log.info("Customer Key Id is  "+ customer.getKey().getId());
                 	customerNew = new Customer(customer.getKey().getId(), customer.getString("Customer_Name"),
                             customer.getString("Customer_Email"), customer.getString("Customer_Location"),
                             "");

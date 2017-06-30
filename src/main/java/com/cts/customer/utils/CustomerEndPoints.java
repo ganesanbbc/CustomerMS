@@ -8,4 +8,5 @@ public interface CustomerEndPoints {
     String CREATE_CUSTOMER_URL = "/createCustomer";
     String SEARCH_CUSTOMER_URL = "/searchCustomer";
     String VIEW_CUSTOMER_URL = "/viewCustomer/{customerId}";
+    String ADD_SERVICE_URL = "/addServiceDetails";
 }

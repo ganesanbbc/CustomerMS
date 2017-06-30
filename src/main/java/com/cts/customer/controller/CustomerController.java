@@ -55,6 +55,13 @@ public class CustomerController {
         return new ModelAndView("addServiceDetails",
                 "service", new ServiceDetails(returnCustomer.getId()));
     }
+    
+    @RequestMapping(value = CustomerEndPoints.ADD_SERVICE_URL, method = RequestMethod.POST)
+    public ModelAndView placeCustomerWork(@ModelAttribute("customer") Customer customer) {
+        
+        return new ModelAndView("addServiceDetails",
+                "customer", customer);
+    }
 
 //    @RequestMapping(value = CustomerEndPoints.SEARCH_CUSTOMER_URL, method = RequestMethod.GET)
 //    public String searchCustomerGet(Model model) {
@@ -79,13 +86,15 @@ public class CustomerController {
 
     @RequestMapping(value = CustomerEndPoints.VIEW_CUSTOMER_URL, method = RequestMethod.GET)
     public String viewCustomer(@PathVariable String customerId, Model model) {
-        if (customerId != null && !customerId.isEmpty()) {
+//        if (customerId != null && !customerId.isEmpty()) {
             Customer customerList = customerService.getCustomerById(Long.parseLong(customerId));
             model.addAttribute(CUSTOMER_ATTR, customerList);
-        }
+//        }
 //    	 model.addAttribute("search", search);
         return VIEW_CUSTOMER_ATTR;
     }
+    
+
 
 
 
