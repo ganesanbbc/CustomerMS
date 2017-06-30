@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>Add Customer</title>
+    <title>View Customer</title>
 	<link rel="stylesheet" type="text/css"
 		  href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
     <style type="text/css">
@@ -51,26 +51,30 @@
 		<div class="rTableRow">
 				<div class="rTableCell">Customer Id:</div>
 				<div class="rTableCell">
-				<p th:text="${id}"></p>
+				
+				<input readonly="readonly" type="text" name="userName"  th:field="*{id}" />
 				</div>
 			</div>
 			<div class="rTableRow">
 				<div class="rTableCell">Customer Name:</div>
 				<div class="rTableCell">
-				<p th:text="${userName}"></p>
+				
+				<input type="text" name="userName"  th:field="*{userName}" />
 				</div>
 			</div>
 			<div class="rTableRow">
 				<div class="rTableCell">Customer Mail id:</div>
 				<div class="rTableCell">
-				<p th:text="${mailId}"></p>
+				
+				<input type="text" name="userName"  th:field="*{mailId}" />
 					
 				</div>
 			</div>
 			<div class="rTableRow">
 				<div class="rTableCell">Location:</div>
 				<div class="rTableCell">
-				<p th:text="${location}"></p>
+				
+				<input readonly="readonly" type="text" name="userName"  th:field="*{location}" />
 					
 				</div>
 			</div>
