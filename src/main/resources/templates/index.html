@@ -65,7 +65,7 @@
 			</thead>
 			<tbody>
 			<tr th:each="customer :${customers}">
-				<td><a href="#" onclick="javascript:viewCustomer(\'' + ${customer.id} + '\');" ><p th:text="${customer.userName}"></p></a></td>
+				<td><a href="/viewCustomer/${customer.mailId}" ><p th:text="${customer.userName}"></p></a></td>
 				<td><p th:text="${customer.mailId}"></p></td>
 				<td><p th:text="${customer.location}"></p></td>
 			</tr>
