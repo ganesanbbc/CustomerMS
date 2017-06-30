@@ -77,7 +77,7 @@ var saveArray=[];
 function saveWorkOrder(saveArray){
     console.log("test--"+JSON.stringify(saveArray));
     $.ajax({
-            url: "/changeStatus/",
+            url: "https://workorder-ri.appspot.com/postWorkOrders",
             method : "POST",
             data : JSON.stringify(saveArray),
             success: function(data) {
