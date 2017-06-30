@@ -7,5 +7,5 @@ public interface CustomerEndPoints {
     String ROOT = "/";
     String CREATE_CUSTOMER_URL = "/createCustomer";
     String SEARCH_CUSTOMER_URL = "/searchCustomer";
-    String VIEW_CUSTOMER_URL = "/viewCustomer";
+    String VIEW_CUSTOMER_URL = "/viewCustomer/{id}";
 }
