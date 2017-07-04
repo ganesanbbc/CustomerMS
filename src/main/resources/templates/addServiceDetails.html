@@ -70,8 +70,8 @@
 
 <div class="container1">
 <div id="wo" class="div2">
-	<input type="hidden" id="name" value="cts"/>
-	<input type="hidden" id="customerid" value="cts1"/>
+	<input type="hidden" id="name"  th:field="${customer.id}"/>
+	<input type="hidden" id="customerid"  th:field="${customer.userName}"/>
 	<input type="hidden" id="status" value="open"/>
 	Details : <input type="text" id="details" cols="40" rows="5" style="width:200px; height:50px;" /><br/><br/>
 	Start Date: <input type="text" id="date"/><br/><br/>
